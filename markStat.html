@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+        <style>
+            .boite{fill:none; stroke-width:.1px; stroke:#33f;}
+            .moustache{stroke-width:.1px; stroke:#33f;}
+            .moustacheEnd{stroke-width:.05px; stroke:#33f;}
+            .moyenne{stroke-width:.05px; stroke:#33f;}
+            .graduationTexte{text-anchor: middle}
+            .graduation{stroke:#ccc;}
+            .dot{fill:#33f;opacity: .5;}
+            .labelLine{stroke:#999;stroke-width: .05px;stroke-dasharray:.1px;}
+            .label{background: gray;fill: #33f;stroke-width: .05px;  filter: drop-shadow(.04px .04px .03px rgba(0, 0, 0, 0.8));}
+            .labelText{font-size: .3px;text-anchor: middle;fill:white;}
+            .colouredArea{fill-opacity: .2;stroke: none;}
+            .red{fill:#f00;}
+            .blue{fill:#00f;}
+            .yellow{fill:#ff0;}
+            .green{fill:#0f0;}
+            #data{border:solid thin gray;font-size:small;width:100%;height: 80vh;}
+            #inputs{width:100%;height: 100%;}
+            h1{font-size: medium;font-family: open sans;font-weight: normal;text-align: center;padding-top: 0;margin-top: 0;}
+            #saveButtons{position: absolute;right: 0;top:0;}
+            #btn5,#btn4,#btn3{display: none;}
+            #saveButtons input{font-size: xx-small}
+        </style>
+		<meta charset="utf-8"/>
+		<title></title>
+	</head>
+	<body>
+        <div id="saveButtons">
+            <input type="button" id="btn5" value="5" onclick="lsIO(5)">
+            <input  id="btn4" type="button" value="4" onclick="lsIO(4)">
+            <input  id="btn3" type="button" value="3" onclick="lsIO(3)">
+            <input  id="btnDEL" type="button" value="DEL" onclick="clearLS(3)">
+        </div>
+        <div id="inputs">
+            <input id="titleInput" type="text" placeholder="titre" required></input>
+            <textarea id="data" contenteditable="true" placeholder="data"></textarea>
+            <input id="bareme" type="text" value="20" required></input>
+            <button id="validate" onclick="getData()">
+              ✓
+            </button>
+        </div>
+        <div id="title"></div>
+        <div id="plot"></div>
+        <script src='script.js'></script>
+	</body>
+</html>
