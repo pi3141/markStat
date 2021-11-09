@@ -6,3 +6,5 @@ display basic descriptive statistic of students marks
 * blue spot for each value ;
 * boxplot ;
 * can remember 3 distributions on local storage.
+
+![screenshot](screenshot.png)
