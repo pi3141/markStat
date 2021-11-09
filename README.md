@@ -7,4 +7,6 @@ display basic descriptive statistic of students marks
 * boxplot ;
 * can remember 3 distributions on local storage.
 
+## Example
+
 ![screenshot](screenshot.png)
