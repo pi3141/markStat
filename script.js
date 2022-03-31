@@ -27,17 +27,22 @@ function getData(){
     document.getElementById('btn4').style.display='revert';
     document.getElementById('btn3').style.display='revert';
 
-    var bareme=document.getElementById('bareme').value;
-    var data= document.getElementById('data').value.replaceAll(',','.');
+    var bareme=parseInt(document.getElementById('bareme').value,10);
+    var data= document.getElementById('data').value;
     var title= document.getElementById('titleInput').value;
+    console.log({title});
+    //console.log({data});
     var dataArray=[];
     var lines = data.split('\n');
     for(var i = 0;i < lines.length;i++){
         if (! lines[i].includes('élèves') && ! lines[i].includes('Moyenne')){
-console.log(lines[i].split('\t').pop());
-            val = parseFloat(lines[i].split('\t').pop(),10);
-            
-            if(! isNaN(val)){dataArray.push(val)};
+            //console.log(dataArray=lines[i].split('\t').pop());
+            var rx = /\d*,\d*/;
+            if (            val = rx.exec(lines[i]) !== null){
+            val = rx.exec(lines[i])[0].replace(',','.');
+            }else{val="";}
+              console.log(val);
+            if(val != 0 && ! isNaN(val)){dataArray.push(val)};
         }
     } 
     console.log({dataArray});
@@ -53,9 +58,10 @@ const quantile = (arr, q) => {
     const base = Math.floor(pos);
     const rest = pos - base;
     if (sorted[base + 1] !== undefined) {
-        return sorted[base] + rest * (sorted[base + 1] - sorted[base]);
+            console.log("q="+q);
+        return parseFloat(sorted[base] + rest * (sorted[base + 1] - sorted[base]));
     } else {
-        return sorted[base];
+        return parseFloat(sorted[base]);
     }
 };
 const roundToTenth = a => Math.round(a*10)/10;
@@ -105,7 +111,7 @@ var findHeightForDot = (b) => (3-(.3*b));
 
 
 asc(data).forEach( function(e) {
-    let cx = e * 10 / bareme;
+    let cx = e / bareme * 10;
     if( a == e){
         svgInner += "<circle class='dot' cx='"+cx+"' cy='"+findHeightForDot(b)+"' r='.07'/>";
         b=b+.5;
