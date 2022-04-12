@@ -42,7 +42,7 @@ function getData(){
             val = rx.exec(lines[i])[0].replace(',','.');
             }else{val="";}
               console.log(val);
-            if(val != 0 && ! isNaN(val)){dataArray.push(val)};
+            if(val != "" && ! isNaN(val)){dataArray.push(val)};
         }
     } 
     console.log({dataArray});
