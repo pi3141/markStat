@@ -27,25 +27,29 @@ function getData(){
     document.getElementById('btn4').style.display='revert';
     document.getElementById('btn3').style.display='revert';
 
-    var bareme=parseInt(document.getElementById('bareme').value,10);
+    var bareme=document.getElementById('bareme').value;
     var data= document.getElementById('data').value;
     var title= document.getElementById('titleInput').value;
-    console.log({title});
-    //console.log({data});
+    //console.log({title});
     var dataArray=[];
     var lines = data.split('\n');
+    //console.log(lines);
+    var markFieldIndex
     for(var i = 0;i < lines.length;i++){
-        if (! lines[i].includes('élèves') && ! lines[i].includes('Moyenne')){
+        if (! lines[i].includes('élèves') && ! lines[i].includes('Moyenne') && lines[i] != ""){
             //console.log(dataArray=lines[i].split('\t').pop());
-            var rx = /\d*,\d*/;
-            if (            val = rx.exec(lines[i]) !== null){
-            val = rx.exec(lines[i])[0].replace(',','.');
-            }else{val="";}
-              console.log(val);
-            if(val != "" && ! isNaN(val)){dataArray.push(val)};
+            strVal=lines[i].split('\t');
+            console.log(strVal[0]+" − "+strVal[markFieldIndex]);
+            //console.log(markFieldIndex);
+             if (markFieldIndex != -1){val = parseInt(strVal[markFieldIndex].replace(',','.'),10);}
+            //val = (Math.round(val * 2) / 2).toFixed(1)//arrondi à la demi unité (todo)
+            //console.log(val);
+            if(! isNaN(val)){dataArray.push(val)};
+        }else{
+          markFieldIndex=lines[i].split('\t').indexOf('Notes');
         }
     } 
-    console.log({dataArray});
+    //console.log({dataArray});
     document.getElementById('inputs').style.display='none';
     document.getElementById('saveButtons').style.display='revert';
     draw(dataArray,bareme,title);
@@ -58,10 +62,9 @@ const quantile = (arr, q) => {
     const base = Math.floor(pos);
     const rest = pos - base;
     if (sorted[base + 1] !== undefined) {
-            console.log("q="+q);
-        return parseFloat(sorted[base] + rest * (sorted[base + 1] - sorted[base]));
+        return sorted[base] + rest * (sorted[base + 1] - sorted[base]);
     } else {
-        return parseFloat(sorted[base]);
+        return sorted[base];
     }
 };
 const roundToTenth = a => Math.round(a*10)/10;
