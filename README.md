@@ -1,7 +1,7 @@
 # markStat
 display basic descriptive statistic of students marks
 
-[demo](https://pi3141.github.io/markStat.html)
+## [demo](https://pi3141.github.io/markStat.html)
 
 * self-contained html file, no internet connection required ;
 * copy paste for Pronote (c)
